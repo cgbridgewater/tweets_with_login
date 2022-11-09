@@ -1,0 +1,6 @@
+/* style for index page */
+
+.scrollable {
+    height: 250px; /* or any value */
+    overflow-y: auto;
+}

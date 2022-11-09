@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Page</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<body class="bg-secondary bg-opacity-10">
+
+    <!-- header -->
+    <div class="header bg-primary bg-opacity-25 bg-gradient p-3">
+        <h1 class="text-center fs-2">Update Ninja Information</h1>
+    </div>
+
+    <!-- wrapper -->
+    <div class="wrapper ">
+        
+        <!-- edit form start-->
+        <form action="/dashboard/editing" method="POST" class="border border-2 border-dark rounded rounded-2 w-50 m-auto mt-5 p-3 bg-gradient bg-dark bg-opacity-10 " >
+            
+        <!-- validation error message -->
+            {% with messages = get_flashed_messages(category_filter=["update"]) %}
+                <!-- declare a variable called messages -->
+                {% if messages %}
+                    <!-- check if there are any messages -->
+                    {% for message in messages %}
+                        <!-- loop through the messages -->
+                        <p>{{message}}</p> <!-- display each message in a paragraph tag -->
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <div class="text-center m-1">
+                <!-- hidden id -->
+                <input type="hidden" name="id" value="{{user.id}}">
+                <!-- customer name -->
+                <label for="first_name">Update First Name</label>
+                <input type="text" name="first_name" placeholder="first_name" value="{{user.first_name}}" >
+            </div>
+            <div class="text-center m-1">
+                <!-- last name -->
+                <label for="last_name">Update Last Name</label>
+                <input type="text" name="last_name" placeholder="last_name" value="{{user.last_name}}" >
+            </div>
+            <div class="text-center m-1">
+                <!-- email -->
+                <label for="email">Update Email</label>
+                <input type="email" name="email" placeholder="email" value="{{user.email}}">
+            </div>  
+            <div class="text-center">
+                <!-- submit button -->
+                <a href="/dashboard" class="btn btn-sm bg-success border border-1 border-dark" role="button">Return To Dash</a>
+                <input class="btn btn-sm bg-warning border border-1 border-dark" type="submit" value="Update">
+                <a href="/dashboard/delete" class="btn btn-sm bg-danger border border-1 border-dark" role="button">Delete Profile</a>
+            </div>
+        </form>
+    </div>
+    
+</body>
+</html>
